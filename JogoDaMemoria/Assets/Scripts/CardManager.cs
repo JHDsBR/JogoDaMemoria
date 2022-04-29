@@ -70,19 +70,25 @@ public class CardManager : MonoBehaviour
         sprites = new List<Sprite>(Resources.LoadAll<Sprite>(sheetname));
         names = new string[sprites.Count];
 
+        if(numberOfCards > sprites.Count*2)
+            numberOfCards = sprites.Count*2;
+
         for(int c=0; c<numberOfCards; c+=2)
         {
             Sprite spt = sprites[Random.Range(0, sprites.Count)];
             Color cor = new Color(Random.value,Random.value,Random.value);
 
             GameObject cardTmp = Instantiate(cardModel, cardGrid.transform) as GameObject;
-            cardTmp.GetComponent<SpriteRenderer>().color = cor;
+            cardTmp.transform.GetChild(1).GetComponent<SpriteRenderer>().color = cor;
             cardTmp.GetComponent<Card>().frontIcon.sprite = spt;
+            // cardTmp.GetComponent<Card>().frontIconShadow.sprite = spt;
             cardTmp.GetComponent<Card>().CM = this;
 
             cardTmp = Instantiate(cardModel, cardGrid.transform) as GameObject;
-            cardTmp.GetComponent<SpriteRenderer>().color = cor;
+            cardTmp.transform.GetChild(1).GetComponent<SpriteRenderer>().color = cor;
+            // cardTmp.GetComponent<SpriteRenderer>().color = cor;
             cardTmp.GetComponent<Card>().frontIcon.sprite = spt;
+            // cardTmp.GetComponent<Card>().frontIconShadow.sprite = spt;
             cardTmp.GetComponent<Card>().CM = this;
 
             sprites.Remove(spt);

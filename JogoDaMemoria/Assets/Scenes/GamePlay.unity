@@ -160,7 +160,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 2.5, y: 3.29}
+  m_CellSize: {x: 1.25, y: 1.645}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -180,8 +180,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 15.0561, y: 10.0588}
+  m_AnchoredPosition: {x: 0, y: -0.5569}
+  m_SizeDelta: {x: 15.0561, y: 8.945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
 GameObject:
@@ -219,7 +219,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900b8ebd40e4c6e499e5d16c77886e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfCards: 18
+  numberOfCards: 60
   cardModel: {fileID: 7814597940251748295, guid: 063b48afaa52b1643a92709f075a31aa, type: 3}
   sheetname: Froots N Veggies
   cardGrid: {fileID: 301919386}
