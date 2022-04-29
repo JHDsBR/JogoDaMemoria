@@ -9,11 +9,26 @@ public class SelectLevelButton : MonoBehaviour
 
     public Text text;
     public int myLevelInt;
+    public Image img;
+
+    private bool canClickMe;
+
+
+    void Start()
+    {
+        canClickMe = GameDataManager.instance.maxLevel >= myLevelInt;
+
+        if(canClickMe)
+            img.color = Color.green;
+    }
 
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene(1); // GamePlay
+        if(!canClickMe)
+            return;
+
+        SceneManager.LoadScene(2); // GamePlay
         PlayerPrefs.SetInt("CurrentLevel", myLevelInt);
     }
 }

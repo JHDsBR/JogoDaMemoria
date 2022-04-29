@@ -170,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 3954257924223410764}
   myLevelInt: 0
+  img: {fileID: 3954257924270422398}
 --- !u!1 &6011468276907410617
 GameObject:
   m_ObjectHideFlags: 0

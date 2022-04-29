@@ -36,6 +36,8 @@ public class Card : MonoBehaviour
 
     public void FlipIn()
     {
+        GameDataManager.instance.numberOfCardsTurned++;
+
         imFacedUp = true;
         cardAnimator.SetBool("FlipIn", true);
         cardAnimator.SetBool("FlipOut", false);

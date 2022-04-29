@@ -22,7 +22,7 @@ public class MouseOverEffect : MonoBehaviour
     {
         Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mouseMovementDirection = currentMousePosition-mouseStartPos;
-        print(currentMousePosition);
+        // print(currentMousePosition);
 
         transform.position = myStartPos-mouseMovementDirection*smoothAmount;
     }

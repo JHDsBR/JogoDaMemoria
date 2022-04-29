@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class CardManager : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class CardManager : MonoBehaviour
     private string[] names;
 
     private List<GameObject> lastTwoCardFaceUp = new List<GameObject>();
+    private List<GameObject> allCardFaceUp = new List<GameObject>();
 
 
     public bool canFlip=true;
@@ -22,6 +25,7 @@ public class CardManager : MonoBehaviour
     {
         CreateCards();
         StartCoroutine(CompareCards());
+        print($"Level {PlayerPrefs.GetInt("CurrentLevel", 1)}");
     }
 
 
@@ -40,6 +44,24 @@ public class CardManager : MonoBehaviour
                 if(lastTwoCardFaceUp[0].name == lastTwoCardFaceUp[1].name)
                 {
                     print("Acertou");
+                    allCardFaceUp.Add(lastTwoCardFaceUp[0]);
+                    allCardFaceUp.Add(lastTwoCardFaceUp[1]);
+
+
+                    if(allCardFaceUp.Count >= numberOfCards)
+                    {
+                        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+
+                        if(currentLevel == GameDataManager.instance.maxLevel)
+                        {
+                            PlayerPrefs.SetInt("CurrentLevel", currentLevel+1);
+                            GameDataManager.instance.maxLevel++;
+                        }
+
+                        GameDataManager.instance.SaveData();
+                        yield return new WaitForSeconds(0.5f);
+                        SceneManager.LoadScene(1);
+                    }
                 }
                 else
                 {
@@ -48,6 +70,7 @@ public class CardManager : MonoBehaviour
                     lastTwoCardFaceUp[0].GetComponent<Card>().FlipOut();
                     yield return new WaitForSeconds(0.3f);
                     lastTwoCardFaceUp[1].GetComponent<Card>().FlipOut();
+
                 }
 
                 lastTwoCardFaceUp = new List<GameObject>();
