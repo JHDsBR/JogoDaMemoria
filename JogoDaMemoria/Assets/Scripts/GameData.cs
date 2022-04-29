@@ -8,7 +8,8 @@ public class GameData
 {
     public int maxLevel;
     public int numberOfCardsTurned;
-    // public int lifes;
+    public int maxLifes;
+    public int currentLifes;
 
     public GameData(GameDataManager data)
     {

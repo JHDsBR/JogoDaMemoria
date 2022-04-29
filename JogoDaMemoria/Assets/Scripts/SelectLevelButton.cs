@@ -28,7 +28,9 @@ public class SelectLevelButton : MonoBehaviour
         if(!canClickMe)
             return;
 
-        SceneManager.LoadScene(2); // GamePlay
-        PlayerPrefs.SetInt("CurrentLevel", myLevelInt);
+        // GameDataManager.instance.maxLifes = 1 + (int)(Mathf.Floor(PlayerPrefs.GetInt("CurrentLevel", 1)/3));
+        // GameDataManager.instance.currentLifes = GameDataManager.instance.maxLifes;
+
+        LoadScene.instance.LoadLevel(myLevelInt);
     }
 }

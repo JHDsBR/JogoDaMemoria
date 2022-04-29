@@ -8,6 +8,10 @@ public class GameDataManager : MonoBehaviour
 
     public int maxLevel;
     public int numberOfCardsTurned;
+    public int maxLifes;
+    public int currentLifes;
+
+    public GameObject soundObj;
 
     public static GameDataManager instance;
 
@@ -16,6 +20,7 @@ public class GameDataManager : MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(soundObj);
         LoadData();
     }
 
@@ -40,6 +45,9 @@ public class GameDataManager : MonoBehaviour
         // return;
         maxLevel = data.maxLevel;
         numberOfCardsTurned = data.numberOfCardsTurned;
+        // maxLifes = data.maxLifes;
+        maxLifes = 5;
+        currentLifes = 5;
     }
 
 }

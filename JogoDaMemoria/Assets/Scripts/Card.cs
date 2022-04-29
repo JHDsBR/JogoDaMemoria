@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Card : MonoBehaviour
 {
-    public SpriteRenderer frontIcon;
+    public Image frontIcon;
     public Animator cardAnimator;
     public CardManager CM; // o própio CardManager que define essa variável
 
@@ -36,6 +37,7 @@ public class Card : MonoBehaviour
 
     public void FlipIn()
     {
+        GamePlayManager.instance.flidSound.Play();
         GameDataManager.instance.numberOfCardsTurned++;
 
         imFacedUp = true;

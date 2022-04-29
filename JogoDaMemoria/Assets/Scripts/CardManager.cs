@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
@@ -23,6 +24,8 @@ public class CardManager : MonoBehaviour
 
     void Start ()
     {
+        numberOfCards = 4 + (int)(Mathf.Floor(PlayerPrefs.GetInt("CurrentLevel", 1)/3)*2);
+
         CreateCards();
         StartCoroutine(CompareCards());
         print($"Level {PlayerPrefs.GetInt("CurrentLevel", 1)}");
@@ -54,38 +57,41 @@ public class CardManager : MonoBehaviour
 
                         if(currentLevel == GameDataManager.instance.maxLevel)
                         {
-                            PlayerPrefs.SetInt("CurrentLevel", currentLevel+1);
+                            // PlayerPrefs.SetInt("CurrentLevel", currentLevel+1);
                             GameDataManager.instance.maxLevel++;
                         }
 
                         GameDataManager.instance.SaveData();
                         yield return new WaitForSeconds(0.5f);
-                        SceneManager.LoadScene(1);
+                        // SceneManager.LoadScene(1);
+                        GamePlayManager.instance.Win();
                     }
                 }
                 else
                 {
                     print("Errou");
                     yield return new WaitForSeconds(0.5f);
+                    GameDataManager.instance.currentLifes--;
                     lastTwoCardFaceUp[0].GetComponent<Card>().FlipOut();
                     yield return new WaitForSeconds(0.3f);
                     lastTwoCardFaceUp[1].GetComponent<Card>().FlipOut();
 
+                    if(GameDataManager.instance.currentLifes <= 0)
+                    {
+                        GamePlayManager.instance.Lose();
+                    }
+
+                    // no script Life que consta a derrota
                 }
 
                 lastTwoCardFaceUp = new List<GameObject>();
-                canFlip = true;
+                canFlip = GameDataManager.instance.currentLifes > 0;
             }
 
             yield return null;
         }
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
 
     void CreateCards()
@@ -102,14 +108,14 @@ public class CardManager : MonoBehaviour
             Color cor = new Color(Random.value,Random.value,Random.value);
 
             GameObject cardTmp = Instantiate(cardModel, cardGrid.transform) as GameObject;
-            cardTmp.transform.GetChild(1).GetComponent<SpriteRenderer>().color = cor;
+            cardTmp.transform.GetChild(0).GetComponent<Image>().color = cor;
             cardTmp.GetComponent<Card>().frontIcon.sprite = spt;
             // cardTmp.GetComponent<Card>().frontIconShadow.sprite = spt;
             cardTmp.GetComponent<Card>().CM = this;
 
             cardTmp = Instantiate(cardModel, cardGrid.transform) as GameObject;
-            cardTmp.transform.GetChild(1).GetComponent<SpriteRenderer>().color = cor;
-            // cardTmp.GetComponent<SpriteRenderer>().color = cor;
+            cardTmp.transform.GetChild(0).GetComponent<Image>().color = cor;
+            // cardTmp.GetComponent<Image>().color = cor;
             cardTmp.GetComponent<Card>().frontIcon.sprite = spt;
             // cardTmp.GetComponent<Card>().frontIconShadow.sprite = spt;
             cardTmp.GetComponent<Card>().CM = this;
