@@ -20,9 +20,11 @@ public class CardManager : MonoBehaviour
 
     private List<GameObject> lastTwoCardFaceUp = new List<GameObject>();
     private List<GameObject> allCardFaceUp = new List<GameObject>();
+    private List<GameObject> allCards = new List<GameObject>();
 
 
-    public bool canFlip=true;
+
+    public bool canFlip=true, faceUpAllCards;
 
     void Start ()
     {
@@ -54,26 +56,24 @@ public class CardManager : MonoBehaviour
         // print($"Level {PlayerPrefs.GetInt("CurrentLevel", 1)}");
     }
 
-    void Update_()
-    {        int columns = numberOfCards;
-        for(int c=1; c<=Mathf.Sqrt(numberOfCards); c++)
+    void Update()
+    {
+        if(faceUpAllCards)
         {
-            // int newColumns = (int)(numberOfCards/c);
+            faceUpAllCards = false;
+            FaceUpAllCards();
 
-            // checar se newColumns é inteiro
-            if((numberOfCards/c)%(int)(numberOfCards/c) == 0 && numberOfCards/c >= c)
-            {
-                columns = (int)(numberOfCards/c);
-            }
+        }
+    }
 
-            // float a = (float)11/2;
-            // Debug.Log((a%(int)a == 0));
-
-
-            // if(newColumns)
+    void FaceUpAllCards()
+    {
+        foreach(GameObject card in allCards)
+        {
+            card.GetComponent<Card>().FlipIn();
         }
 
-        print($"Linhas: {numberOfCards/columns}   <|>   Colunas: {columns}");
+        GamePlayManager.instance.Win();
     }
 
 
@@ -153,12 +153,14 @@ public class CardManager : MonoBehaviour
             Color cor = new Color(Random.value,Random.value,Random.value);
 
             GameObject cardTmp = Instantiate(cardModel, cardGrid.transform) as GameObject;
+            allCards.Add(cardTmp);
             cardTmp.transform.GetChild(0).GetComponent<Image>().color = cor;
             cardTmp.GetComponent<Card>().frontIcon.sprite = spt;
             // cardTmp.GetComponent<Card>().frontIconShadow.sprite = spt;
             cardTmp.GetComponent<Card>().CM = this;
 
             cardTmp = Instantiate(cardModel, cardGrid.transform) as GameObject;
+            allCards.Add(cardTmp);
             cardTmp.transform.GetChild(0).GetComponent<Image>().color = cor;
             // cardTmp.GetComponent<Image>().color = cor;
             cardTmp.GetComponent<Card>().frontIcon.sprite = spt;

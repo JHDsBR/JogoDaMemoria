@@ -43,11 +43,12 @@ public class GameDataManager : MonoBehaviour
         // print(data);
 
         // return;
+        // maxLevel = 84;
         maxLevel = data.maxLevel;
         numberOfCardsTurned = data.numberOfCardsTurned;
         // maxLifes = data.maxLifes;
-        maxLifes = 5;
-        currentLifes = 5;
+        // maxLifes = 5;
+        // currentLifes = 5;
     }
 
 }

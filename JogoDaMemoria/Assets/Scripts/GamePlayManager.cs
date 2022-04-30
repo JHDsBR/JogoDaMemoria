@@ -39,7 +39,7 @@ public class GamePlayManager : MonoBehaviour
         winBack.SetActive(true);
         loseBack.SetActive(false);
         resultScreen.SetActive(true);
-        nextButton.SetActive(true);
+        nextButton.SetActive(PlayerPrefs.GetInt("CurrentLevel",1) < 84); // é necessário verificar se é o ultimo nível antes de ativar o botão
     }
 
 

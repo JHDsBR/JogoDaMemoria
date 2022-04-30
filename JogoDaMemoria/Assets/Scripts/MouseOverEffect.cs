@@ -23,13 +23,18 @@ public class MouseOverEffect : MonoBehaviour
         myStartPos = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mouseMovementDirection = currentMousePosition-center;
-        // print(currentMousePosition);
 
-        transform.position = myStartPos-mouseMovementDirection*smoothAmount;
-    }
+    #if UNITY_STANDALONE || UNITY_EDITOR
+
+        // Update is called once per frame
+        void Update()
+        {
+            Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mouseMovementDirection = currentMousePosition-center;
+            // print(currentMousePosition);
+
+            transform.position = myStartPos-mouseMovementDirection*smoothAmount;
+        }
+
+    #endif
 }
