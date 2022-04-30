@@ -17,7 +17,7 @@ public class SelectLevelButton : MonoBehaviour
     void Start()
     {
         canClickMe = GameDataManager.instance.maxLevel >= myLevelInt;
-
+        // canClickMe=true;
         if(canClickMe)
             img.color = Color.green;
     }

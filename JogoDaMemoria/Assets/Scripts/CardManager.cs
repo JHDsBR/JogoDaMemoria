@@ -22,12 +22,14 @@ public class CardManager : MonoBehaviour
     private List<GameObject> allCardFaceUp = new List<GameObject>();
     private List<GameObject> allCards = new List<GameObject>();
 
+    public static CardManager instance;
 
 
     public bool canFlip=true, faceUpAllCards;
 
     void Start ()
     {
+        instance = this;
         numberOfCards = 4 + (int)(Mathf.Floor(PlayerPrefs.GetInt("CurrentLevel", 1)/3)*2);
 
         int columns = numberOfCards;
@@ -66,14 +68,14 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    void FaceUpAllCards()
+    public void FaceUpAllCards()
     {
         foreach(GameObject card in allCards)
         {
             card.GetComponent<Card>().FlipIn();
         }
 
-        GamePlayManager.instance.Win();
+        // GamePlayManager.instance.Win();
     }
 
 
