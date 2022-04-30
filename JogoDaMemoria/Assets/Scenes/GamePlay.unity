@@ -6538,7 +6538,7 @@ MonoBehaviour:
   m_StartAxis: 0
   m_CellSize: {x: 123, y: 162}
   m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
+  m_Constraint: 2
   m_ConstraintCount: 5
 --- !u!1 &1315645772
 GameObject:
@@ -6569,7 +6569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900b8ebd40e4c6e499e5d16c77886e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfCards: 10
+  gridOfCards: {fileID: 1286574091}
+  numberOfCards: 46
   cardModel: {fileID: 7814597940251748295, guid: 4d9b39d697ff1484e91a33f152347232, type: 3}
   sheetname: Froots N Veggies
   cardGrid: {fileID: 1286574089}

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class CardManager : MonoBehaviour
 {
+    public GridLayoutGroup gridOfCards;
+
     public int numberOfCards=18;
     public GameObject cardModel;
     public string sheetname;
@@ -26,9 +28,52 @@ public class CardManager : MonoBehaviour
     {
         numberOfCards = 4 + (int)(Mathf.Floor(PlayerPrefs.GetInt("CurrentLevel", 1)/3)*2);
 
+        int columns = numberOfCards;
+
+        for(int c=1; c<=Mathf.Sqrt(numberOfCards); c++)
+        {
+            float testFloat = (float)numberOfCards/c;
+            int   testInt   = (int)numberOfCards/c;
+
+            if(testFloat%testInt == 0 && testFloat >= c && c<=5)
+                columns = testInt;
+        }
+
+        // print($"Linhas: {numberOfCards/columns}   <|>   Colunas: {columns}");
+
+
+        //maxolumns 16
+        if(columns >= 16)
+            gridOfCards.constraint = GridLayoutGroup.Constraint.Flexible;
+        else
+            gridOfCards.constraintCount = numberOfCards/columns;
+
+
         CreateCards();
         StartCoroutine(CompareCards());
-        print($"Level {PlayerPrefs.GetInt("CurrentLevel", 1)}");
+        // print($"Level {PlayerPrefs.GetInt("CurrentLevel", 1)}");
+    }
+
+    void Update_()
+    {        int columns = numberOfCards;
+        for(int c=1; c<=Mathf.Sqrt(numberOfCards); c++)
+        {
+            // int newColumns = (int)(numberOfCards/c);
+
+            // checar se newColumns é inteiro
+            if((numberOfCards/c)%(int)(numberOfCards/c) == 0 && numberOfCards/c >= c)
+            {
+                columns = (int)(numberOfCards/c);
+            }
+
+            // float a = (float)11/2;
+            // Debug.Log((a%(int)a == 0));
+
+
+            // if(newColumns)
+        }
+
+        print($"Linhas: {numberOfCards/columns}   <|>   Colunas: {columns}");
     }
 
 

@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb59a1857d089054d8780888d2123a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLevel: 5
+  maxLevel: 1
   numberOfCardsTurned: 0
   maxLifes: 0
   currentLifes: 0
