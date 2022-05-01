@@ -11,7 +11,7 @@ public class GameDataManager : MonoBehaviour
     public int maxLifes;
     public int currentLifes;
 
-    public GameObject soundObj;
+    public GameObject[] dontDestory;
 
     public static GameDataManager instance;
 
@@ -20,7 +20,10 @@ public class GameDataManager : MonoBehaviour
     {
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(soundObj);
+
+        foreach(GameObject obj in dontDestory)
+            DontDestroyOnLoad(obj);
+
         LoadData();
     }
 

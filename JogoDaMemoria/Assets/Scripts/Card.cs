@@ -31,6 +31,7 @@ public class Card : MonoBehaviour
             return;
 
         FlipIn();
+        GameDataManager.instance.numberOfCardsTurned++;
         CM.PickCard(gameObject);
     }
 
@@ -38,7 +39,6 @@ public class Card : MonoBehaviour
     public void FlipIn()
     {
         GamePlayManager.instance.flidSound.Play();
-        GameDataManager.instance.numberOfCardsTurned++;
 
         imFacedUp = true;
         cardAnimator.SetBool("FlipIn", true);

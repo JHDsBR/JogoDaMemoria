@@ -5,6 +5,11 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
 
+    void Start()
+    {
+        GameDataManager.instance.SaveData();
+    }
+
     public void LoadNextLevel() // pode ser usado para chamar proximo nivel
     {
         int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);

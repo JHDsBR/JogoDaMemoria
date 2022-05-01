@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseOverEffect : MonoBehaviour
 {
-
+    public Animator anim;
     public float smoothAmount = 0.25f;
 
     Vector2 mouseStartPos;
@@ -14,6 +14,7 @@ public class MouseOverEffect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim.enabled = false;
         mouseStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         center.x = Screen.width / 2;
         center.y = Screen.height / 2;
@@ -21,10 +22,13 @@ public class MouseOverEffect : MonoBehaviour
         center = Camera.main.ScreenToWorldPoint(center);
 
         myStartPos = transform.position;
+        #if !UNITY_EDITOR
+        anim.enabled = true;
+        #endif
     }
 
 
-    #if UNITY_STANDALONE || UNITY_EDITOR
+    #if UNITY_EDITOR
 
         // Update is called once per frame
         void Update()
@@ -35,6 +39,7 @@ public class MouseOverEffect : MonoBehaviour
 
             transform.position = myStartPos-mouseMovementDirection*smoothAmount;
         }
+
 
     #endif
 }

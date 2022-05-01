@@ -21,7 +21,6 @@ public class GamePlayManager : MonoBehaviour
 
     public static GamePlayManager instance;
 
-    bool skip;
 
     void Start()
     {
@@ -68,13 +67,5 @@ public class GamePlayManager : MonoBehaviour
         resultScreen.SetActive(true);
           nextButton.SetActive(PlayerPrefs.GetInt("CurrentLevel",1) < GameDataManager.instance.maxLevel);
     }
-
-
-    void OnMouseDown()
-    {
-        skip = true;
-    }
-
-
 
 }

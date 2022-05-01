@@ -30,6 +30,8 @@ public class LoadScene : MonoBehaviour
     {
         GameDataManager.instance.maxLifes = 2 + (int)(Mathf.Floor(PlayerPrefs.GetInt("CurrentLevel", 1)/3)*1.5);;
         GameDataManager.instance.currentLifes = GameDataManager.instance.maxLifes;
+        GameDataManager.instance.SaveData();
+
         SceneManager.LoadScene(sceneNum);
     }
 
